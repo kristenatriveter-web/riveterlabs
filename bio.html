@@ -46,16 +46,23 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 300;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
     }
     .headshot {
-      width: 96px;
-      height: 96px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
       border: 1px solid rgba(255,255,255,0.3);
-      margin-bottom: 1.5rem;
+      flex-shrink: 0;
     }
+    .header-text { flex: 1; }
     h1 {
       color: #fff;
       font-size: clamp(2.2rem, 5vw, 3.2rem);
@@ -69,7 +76,6 @@
       font-size: 14px;
       letter-spacing: 0.06em;
       font-weight: 300;
-      margin-bottom: 2.5rem;
     }
     .divider {
       height: 0.5px;
@@ -109,6 +115,8 @@
     @media (max-width: 600px) {
       .bio-wrap { padding: 6rem 1.5rem 3rem; }
       .back-btn { top: 1.5rem; left: 1.5rem; }
+      .header-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .headshot { width: 110px; height: 110px; }
     }
   </style>
 </head>
@@ -117,10 +125,13 @@
 
   <div class="bio-wrap">
     <div class="bio-content">
-      <img src="kristen-headshot.jpg" alt="Kristen Gendron" class="headshot">
-      <div class="label">About</div>
-      <h1>Kristen Gendron</h1>
-      <div class="role">Founder, Riveter Labs</div>
+      <div class="header-row">
+        <img src="kristen-headshot.jpg" alt="Kristen Gendron" class="headshot">
+        <div class="header-text">
+          <h1>Kristen Gendron</h1>
+          <div class="role">Founder, Riveter Labs</div>
+        </div>
+      </div>
       <div class="divider"></div>
 
       <div class="bio-text">
