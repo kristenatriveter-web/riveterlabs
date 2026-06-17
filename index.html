@@ -102,10 +102,35 @@
       transition: color 0.2s;
     }
     .footer-bar a:hover { color: rgba(255,255,255,0.8); }
+    .menu-btn {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      z-index: 2;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .menu-btn span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+    .menu-btn:hover span { background: rgba(255,255,255,1); }
   </style>
 </head>
 <body>
   <div class="rl-page">
+    <a href="bio.html" class="menu-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
     <div class="hero">
       <svg class="arrows-svg" viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <polygon points="300,80 90,700 510,700" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.6"/>
