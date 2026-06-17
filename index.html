@@ -122,15 +122,52 @@
       background: rgba(255,255,255,0.7);
     }
     .menu-btn:hover span { background: rgba(255,255,255,1); }
+    .menu-wrap {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      z-index: 2;
+    }
+    .menu-btn {
+      position: static;
+    }
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      background: rgba(0,0,0,0.25);
+      border: 0.5px solid rgba(255,255,255,0.2);
+      min-width: 140px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .dropdown.open { display: flex; }
+    .dropdown a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 300;
+      padding: 0.85rem 1.25rem;
+      transition: background 0.2s;
+    }
+    .dropdown a:hover { background: rgba(255,255,255,0.08); }
   </style>
 </head>
 <body>
   <div class="rl-page">
-    <a href="bio.html" class="menu-btn" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </a>
+    <div class="menu-wrap">
+      <button class="menu-btn" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="dropdown" id="navDropdown">
+        <a href="bio.html">About</a>
+      </div>
+    </div>
     <div class="hero">
       <svg class="arrows-svg" viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <polygon points="300,80 90,700 510,700" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.6"/>
@@ -155,5 +192,20 @@
       <a href="mailto:hello@riveter.co">hello@riveter.co</a>
     </div>
   </div>
+  <script>
+    var menuToggle = document.getElementById('menuToggle');
+    var dropdown = document.getElementById('navDropdown');
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!dropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>
