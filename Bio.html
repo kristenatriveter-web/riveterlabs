@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kristen Gendron — Riveter Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background: #2a9d8f;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .menu-wrap {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      z-index: 2;
+    }
+    .menu-btn {
+      position: static;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .menu-btn span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+    .menu-btn:hover span { background: rgba(255,255,255,1); }
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      background: rgba(0,0,0,0.25);
+      border: 0.5px solid rgba(255,255,255,0.2);
+      min-width: 140px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .dropdown.open { display: flex; }
+    .dropdown a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 300;
+      padding: 0.85rem 1.25rem;
+      transition: background 0.2s;
+    }
+    .dropdown a:hover { background: rgba(255,255,255,0.08); }
+
+    .bio-wrap {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 8rem 2.5rem 4rem;
+    }
+    .bio-content {
+      max-width: 680px;
+      width: 100%;
+    }
+    .label {
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .headshot {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.3);
+      flex-shrink: 0;
+    }
+    .header-text { flex: 1; }
+    h1 {
+      color: #fff;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .role {
+      color: rgba(255,255,255,0.55);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      font-weight: 300;
+    }
+    .divider {
+      height: 0.5px;
+      background: rgba(255,255,255,0.25);
+      width: 100%;
+      margin-bottom: 2.5rem;
+    }
+    .bio-text p {
+      color: rgba(255,255,255,0.88);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.6rem;
+    }
+    .bio-text p:last-child { margin-bottom: 0; }
+    .footer-bar {
+      padding: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bar p {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .footer-bar a {
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-bar a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 600px) {
+      .bio-wrap { padding: 6rem 1.5rem 3rem; }
+      .header-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .headshot { width: 110px; height: 110px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="dropdown" id="navDropdown">
+      <a href="index.html">Home</a>
+      <a href="who-i-work-with.html">Who I Work With</a>
+    </div>
+  </div>
+
+  <div class="bio-wrap">
+    <div class="bio-content">
+      <div class="header-row">
+        <img src="kristen-headshot.jpg" alt="Kristen Gendron" class="headshot">
+        <div class="header-text">
+          <h1>Kristen Gendron</h1>
+          <div class="role">Founder, Riveter Labs</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="bio-text">
+        <p>Kristen Gendron specializes in the space between vision and execution, where bold ideas either gain the momentum to create real impact, or stall out in the face of the day-to-day pressures, market frictions, and the rapid pace of change facing leaders today. She works with founders and executives across corporations, foundations, nonprofits, and family offices to create the bridge from vision into strategy, and to translate strategy into the business plans, operating models, and execution roadmaps it takes to bring innovation to life. She founded Riveter Labs for organizations at these inflection points, where the question is real, the stakes are high, and the right thinking in the room changes what's possible.</p>
+
+        <p>Over the course of her career, Kristen has designed, launched, and supported corporate innovation funds, venture capital studios, philanthropic foundations, and tech startups, ranging from scrappy two-person founding teams to Fortune 100 companies. She's worked across ten-plus industries in the public, private, and nonprofit sectors, spanning twelve countries on four continents.</p>
+
+        <p>Kristen's early career started at USAID's Development Innovation Ventures, where she helped build the first evidence-based innovation fund inside the federal government, funding and supporting social entrepreneurs in emerging markets through the scrappy testing of poverty-alleviation efforts, and the scaling of what worked. The model drew enough attention that the Obama White House promoted it as a template for other agencies. When USAID was shut down in 2025, DIV was the only program to survive, spinning out as an independent nonprofit, the DIV Fund, which Kristen has also helped advise.</p>
+
+        <p>Later, Kristen joined Nike as the chief of staff standing up Valiant Labs, the company's internal incubator that created an innovation pipeline for digital products to reach expanded consumer sets in high growth ways. After building the early strategy and operations of the incubator, Kristen became co-CEO of one of the incubator's portfolio companies, navigating Nike's supply chain and cross-functional bureaucracy to build a reverse logistics operation as well as in market operations that validated consumer demand. That business became Nike Refurbished, a new line of revenue for Nike via sales in factory stores across the US.</p>
+
+        <p>At VF Corporation, she built the investment strategy and infrastructure for Venture Foundry, the company's innovation fund investing in wellness-tech startups and supporting innovation design within brands like The North Face and Vans.</p>
+
+        <p>Kristen helped take that model further in creating a spinout venture capital fund and studio called Wildwood, becoming founding principal and COO. There, she designed the operations and strategy of a new model for venture focused on a values thesis around investing in net positive businesses, and an operating thesis around providing operational support to portfolio companies to accelerate them through the earliest stages of growth. She helped build Wildwood from a concept on paper into an operating team of seven, building the marketing, sales, selection process, and financial model to support thirteen portfolio companies, all while embedding in three companies as an in-house strategist and operator.</p>
+
+        <p>Today, Kristen continues to build and invest alongside her consulting work, including as the founder of Tempup, a pet products startup, and as an adjunct professor at the University of Denver's Daniels College of Business, where she teaches the next generation of entrepreneurs.</p>
+
+        <p>Kristen holds a BA with honors in International Relations and French from Johns Hopkins University and an MBA from Harvard Business School.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <p>© 2026 Riveter Labs</p>
+    <a href="mailto:hello@riveter.co">hello@riveter.co</a>
+  </div>
+
+  <script>
+    var menuToggle = document.getElementById('menuToggle');
+    var dropdown = document.getElementById('navDropdown');
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!dropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>

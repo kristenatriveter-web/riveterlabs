@@ -159,13 +159,14 @@
 <body>
   <div class="rl-page">
     <div class="menu-wrap">
-      <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('navDropdown').classList.toggle('open')">
+      <button class="menu-btn" id="menuToggle" aria-label="Menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
       <div class="dropdown" id="navDropdown">
-        <a href="bio.html">About Me</a>
+        <a href="bio.html">About</a>
+        <a href="who-i-work-with.html">Who I Work With</a>
       </div>
     </div>
     <div class="hero">
@@ -193,10 +194,16 @@
     </div>
   </div>
   <script>
+    var menuToggle = document.getElementById('menuToggle');
+    var dropdown = document.getElementById('navDropdown');
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
     document.addEventListener('click', function(e) {
-      var wrap = document.querySelector('.menu-wrap');
-      var dropdown = document.getElementById('navDropdown');
-      if (!wrap.contains(e.target)) {
+      if (!dropdown.contains(e.target) && !menuToggle.contains(e.target)) {
         dropdown.classList.remove('open');
       }
     });

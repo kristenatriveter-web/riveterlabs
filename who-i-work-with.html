@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who I Work With — Riveter Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background: #2a9d8f;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .back-btn {
+      position: absolute;
+      top: 2.5rem;
+      left: 2.5rem;
+      z-index: 2;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: rgba(255,255,255,1); }
+
+    .menu-wrap {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      z-index: 2;
+    }
+    .menu-btn {
+      position: static;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .menu-btn span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+    .menu-btn:hover span { background: rgba(255,255,255,1); }
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      background: rgba(0,0,0,0.25);
+      border: 0.5px solid rgba(255,255,255,0.2);
+      min-width: 140px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .dropdown.open { display: flex; }
+    .dropdown a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 300;
+      padding: 0.85rem 1.25rem;
+      transition: background 0.2s;
+    }
+    .dropdown a:hover { background: rgba(255,255,255,0.08); }
+
+    .page-wrap {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 8rem 2.5rem 4rem;
+    }
+    .page-content {
+      max-width: 760px;
+      width: 100%;
+    }
+    .label {
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      color: #fff;
+      font-size: clamp(2rem, 4.5vw, 2.6rem);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .intro {
+      color: rgba(255,255,255,0.78);
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 1.5;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      margin-top: 0;
+    }
+    .divider {
+      height: 0.5px;
+      background: rgba(255,255,255,0.25);
+      width: 100%;
+      margin-bottom: 2.5rem;
+    }
+
+    .persona {
+      margin-bottom: 4.5rem;
+      max-width: 580px;
+    }
+    .persona:nth-child(odd) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+    .persona:nth-child(even) {
+      margin-left: auto;
+      margin-right: 0;
+      text-align: right;
+    }
+    .persona:last-child { margin-bottom: 0; }
+    .persona-eyebrow {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin-bottom: 0.9rem;
+    }
+    .persona-title {
+      color: #fff;
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .persona-body {
+      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.4rem;
+    }
+    .persona-body strong {
+      color: #fff;
+      font-weight: 500;
+    }
+    .persona-divider {
+      height: 0.5px;
+      background: rgba(255,255,255,0.15);
+      width: 100%;
+      margin-top: 4.5rem;
+    }
+
+    .footer-bar {
+      padding: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bar p {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .footer-bar a {
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-bar a:hover { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 600px) {
+      .page-wrap { padding: 6rem 1.5rem 3rem; }
+      .back-btn { top: 1.5rem; left: 1.5rem; }
+      .persona { margin-bottom: 3rem; max-width: 100%; text-align: left !important; }
+      .persona-divider { margin-top: 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="dropdown" id="navDropdown">
+      <a href="index.html">Home</a>
+      <a href="bio.html">About</a>
+    </div>
+  </div>
+
+  <div class="page-wrap">
+    <div class="page-content">
+      <div class="label">Who I work with</div>
+      <h1>Five different leaders, one shared moment:</h1>
+      <div class="intro">Knowing something needs to change, and needing the right partner to make it happen.</div>
+      <div class="divider"></div>
+
+      <div class="persona">
+        <div class="persona-eyebrow">01</div>
+        <div class="persona-title">Corporate Innovators</div>
+        <p class="persona-body">Chief Innovation Officer. VP of Strategy. Innovation lead. You have the mandate, but not the momentum. You need someone who's built innovation strategies and operating models across industries and cultures, and knows how to adapt what's worked elsewhere to fit where you are now.</p>
+      </div>
+      <div class="persona-divider"></div>
+
+      <div class="persona">
+        <div class="persona-eyebrow">02</div>
+        <div class="persona-title">Foundation and Family Office Leaders</div>
+        <p class="persona-body">You lead a foundation or family office, whether you're starting from a blank page or rethinking an approach that no longer fully reflects where you are now. You want to make sure your efforts are driving as much impact as possible, and need help from someone who understands both traditional and impact investing, but also brings insights from operating within grant-based non-profits and social enterprises.</p>
+      </div>
+      <div class="persona-divider"></div>
+
+      <div class="persona">
+        <div class="persona-eyebrow">03</div>
+        <div class="persona-title">CEOs at Inflection Points</div>
+        <p class="persona-body">Markets, technology, and consumers are changing faster than your company can keep up with, and you don't have the space in the day-to-day to think about solutions. You need someone who's worked with CEOs across industries — someone who knows how to pivot strategies, cultures, and operating models — so you can move faster and adapt to the change around you.</p>
+      </div>
+      <div class="persona-divider"></div>
+
+      <div class="persona">
+        <div class="persona-eyebrow">04</div>
+        <div class="persona-title">Emerging Fund Managers</div>
+        <p class="persona-body">You're passionate about early stage investing, enough to take the leap into launching your own venture fund, studio, or angel practice. You need someone who's actually built early stage venture infrastructure before, from investment thesis and portfolio strategy down to founder sourcing and selection, so you launch with a high functioning fund instead of spending your first year building the basics from scratch.</p>
+      </div>
+      <div class="persona-divider"></div>
+
+      <div class="persona">
+        <div class="persona-eyebrow">05</div>
+        <div class="persona-title">Founders and Entrepreneurs</div>
+        <p class="persona-body">You're an expert in your space, but starting a company is its own discipline, and you don't want to learn it the hard way. You need someone who's been in enough strategic and operating roles in startups to know what works, so you can move faster, avoid costly mistakes, and turn your idea into something real.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <p>© 2026 Riveter Labs</p>
+    <a href="mailto:hello@riveter.co">hello@riveter.co</a>
+  </div>
+
+  <script>
+    var menuToggle = document.getElementById('menuToggle');
+    var dropdown = document.getElementById('navDropdown');
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!dropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
