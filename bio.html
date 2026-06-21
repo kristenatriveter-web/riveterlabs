@@ -16,19 +16,52 @@
       flex-direction: column;
       position: relative;
     }
-    .back-btn {
+    .menu-wrap {
       position: absolute;
       top: 2.5rem;
-      left: 2.5rem;
+      right: 2.5rem;
       z-index: 2;
-      color: rgba(255,255,255,0.6);
+    }
+    .menu-btn {
+      position: static;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .menu-btn span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+    .menu-btn:hover span { background: rgba(255,255,255,1); }
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      background: rgba(0,0,0,0.25);
+      border: 0.5px solid rgba(255,255,255,0.2);
+      min-width: 140px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .dropdown.open { display: flex; }
+    .dropdown a {
+      color: rgba(255,255,255,0.8);
       text-decoration: none;
       font-size: 12px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      transition: color 0.2s;
+      font-weight: 300;
+      padding: 0.85rem 1.25rem;
+      transition: background 0.2s;
     }
-    .back-btn:hover { color: rgba(255,255,255,1); }
+    .dropdown a:hover { background: rgba(255,255,255,0.08); }
 
     .bio-wrap {
       flex: 1;
@@ -114,14 +147,23 @@
 
     @media (max-width: 600px) {
       .bio-wrap { padding: 6rem 1.5rem 3rem; }
-      .back-btn { top: 1.5rem; left: 1.5rem; }
       .header-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
       .headshot { width: 110px; height: 110px; }
     }
   </style>
 </head>
 <body>
-  <a href="index.html" class="back-btn">← Back</a>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="dropdown" id="navDropdown">
+      <a href="index.html">Home</a>
+      <a href="who-i-work-with.html">Who I Work With</a>
+    </div>
+  </div>
 
   <div class="bio-wrap">
     <div class="bio-content">
@@ -135,9 +177,9 @@
       <div class="divider"></div>
 
       <div class="bio-text">
-        <p>Kristen Gendron specializes in the space between vision and execution, where bold ideas either gain the momentum to create real impact, or stall out in the face of the day-to-day pressures, market frictions, and the overwhelm of rapid change facing leaders today. She works with founders and executives across corporations, foundations, nonprofits, and family offices to create the bridge from vision into strategy, and to translate strategy into the business plans, operating models, and execution roadmaps it takes to bring innovation to life. She founded Riveter Labs for organizations at these inflection points, where the question is real, the stakes are high, and the right thinking in the room changes what's possible.</p>
+        <p>Kristen Gendron specializes in the space between vision and execution, where bold ideas either gain the momentum to create real impact, or stall out in the face of the day-to-day pressures, market frictions, and the rapid pace of change facing leaders today. She works with founders and executives across corporations, foundations, nonprofits, and family offices to create the bridge from vision into strategy, and to translate strategy into the business plans, operating models, and execution roadmaps it takes to bring innovation to life. She founded Riveter Labs for organizations at these inflection points, where the question is real, the stakes are high, and the right thinking in the room changes what's possible.</p>
 
-        <p>Over the course of her career, Kristen has designed, launched, and supported corporate innovation funds, venture capital studios, philanthropic foundations, and tech startups, ranging from scrappy two-person founding teams to Fortune 100 companies. She's worked across more than ten industries in the public, private, and nonprofit sectors, spanning twelve countries on four continents.</p>
+        <p>Over the course of her career, Kristen has designed, launched, and supported corporate innovation funds, venture capital studios, philanthropic foundations, and tech startups, ranging from scrappy two-person founding teams to Fortune 100 companies. She's worked across ten-plus industries in the public, private, and nonprofit sectors, spanning twelve countries on four continents.</p>
 
         <p>Kristen's early career started at USAID's Development Innovation Ventures, where she helped build the first evidence-based innovation fund inside the federal government, funding and supporting social entrepreneurs in emerging markets through the scrappy testing of poverty-alleviation efforts, and the scaling of what worked. The model drew enough attention that the Obama White House promoted it as a template for other agencies. When USAID was shut down in 2025, DIV was the only program to survive, spinning out as an independent nonprofit, the DIV Fund, which Kristen has also helped advise.</p>
 
@@ -158,5 +200,21 @@
     <p>© 2026 Riveter Labs</p>
     <a href="mailto:hello@riveter.co">hello@riveter.co</a>
   </div>
+
+  <script>
+    var menuToggle = document.getElementById('menuToggle');
+    var dropdown = document.getElementById('navDropdown');
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!dropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>
